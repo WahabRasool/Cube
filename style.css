@@ -1,0 +1,84 @@
+html {
+    font-size: min(0.5vw, 1.75vh);
+  }
+  
+  body {
+    background: linear-gradient(#4b5b8a, #4b5c7a);
+    display: grid;
+    place-items: center;
+    height: 100svh;
+    perspective: 1000px; 
+    perspective-origin: 50% 5%;
+  }
+  
+  .box {
+    position: absolute;
+    --size: 10.1rem;
+    
+    margin: 0;
+  
+    width: var(--size);
+    height: var(--size);
+    
+    transform-style: preserve-3d;
+    transform: translateY(-2rem) rotateY(25deg);
+    animation: float 5s infinite linear, rotate 250000s infinite linear;
+    }
+  
+  .reflection {
+    animation: float-reflection 5s infinite linear, rotate 250000s infinite linear;
+    
+    * {filter: blur(5px);}
+    color: #888888;
+  }
+  
+  .top,
+  .left,
+  .right,
+  .bottom,
+  .front,
+  .back {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    background-color: #99999950;
+    border: 0.75rem solid rgba(200,200,230, 1);
+    box-sizing: border-box;
+    backface-visibility: visible;
+    backdrop-filter: blur(5px) hue-rotate(20deg) brightness(1.1);
+  }
+  
+  .top {
+    transform: translateY(-5rem) rotateX(90deg);
+  }
+  .bottom {
+    transform: translateY(5rem) rotateX(90deg);
+  }
+  .left {
+    transform: translateX(5rem) rotateY(90deg);
+
+  }
+  .right {
+    transform: translateX(-5rem) rotateY(-90deg);
+  }
+  .back {
+    transform: translateZ(-5rem) rotateY(180deg);
+  }
+  .front {
+    transform: translateZ(5rem);
+  }
+  
+  
+  @keyframes float {
+    0%,100% { margin-bottom: 11rem; }
+    50% { margin-bottom: 15rem; }
+  }
+  @keyframes float-reflection {
+    0%,100% { margin-top: 11rem; }
+    50% { margin-top: 15rem; }
+  }
+  
+  @keyframes rotate {
+    0%,100% { transform: rotateY(0deg) }
+    50% { transform: rotateY(3600000deg) }
+  }
